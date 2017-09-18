@@ -9,6 +9,11 @@
   <artifactId>taotao-manager-web</artifactId>
   <packaging>war</packaging>
   <dependencies>
+  		<!-- junit组件 -->
+  			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+			</dependency>
 	  <!-- 管理web模块的依赖 -->
 	  <dependency>
 	    <groupId>com.taotao</groupId>
