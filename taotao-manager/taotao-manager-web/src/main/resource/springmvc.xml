@@ -24,6 +24,14 @@
 			<property name="prefix" value="/WEB-INF/jsp/" />
 			<property name="suffix" value=".jsp"/>
 		</bean>
+		
+		<!-- 配置文件上传MultipartResolver -->
+		 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		   <property name="defaultEncoding" value="utf-8"/>
+		   <property name="maxUploadSize" value="5048576"/> <!-- 5M -->
+		 </bean>
+		
+		
 		<!-- 默认创建注解处理器映射器和注解处理器适配器,并提供json支持-->
 	 	<mvc:annotation-driven />
 	 	<!-- 配置资源映射 -->
