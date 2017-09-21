@@ -23,7 +23,7 @@
 	        <tr>
 	            <td>商品价格:</td>
 	            <td><input class="easyui-numberbox" type="text" name="priceView" data-options="min:1,max:99999999,precision:2,required:true" />
-	            	<input type="hidden" name="price"/>
+	            		<input type="hidden" name="price"/>
 	            </td>
 	        </tr>
 	        <tr>
