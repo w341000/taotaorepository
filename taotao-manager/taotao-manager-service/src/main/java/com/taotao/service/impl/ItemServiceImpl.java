@@ -11,8 +11,10 @@ import com.github.pagehelper.PageInfo;
 import com.taotao.common.pojo.EUDateGridResult;
 import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.common.utils.IDUtils;
+import com.taotao.mapper.TbItemDescMapper;
 import com.taotao.mapper.TbItemMapper;
 import com.taotao.pojo.TbItem;
+import com.taotao.pojo.TbItemDesc;
 import com.taotao.pojo.TbItemExample;
 import com.taotao.service.ItemService;
 
@@ -21,6 +23,8 @@ public class ItemServiceImpl implements ItemService{
 
 	@Resource
 	private TbItemMapper itemMapper;
+	@Resource
+	private TbItemDescMapper itemDescMapper;
 	@Override
 	public TbItem getItemById(Long id){
 		TbItem item = itemMapper.selectByPrimaryKey(id);
@@ -40,7 +44,7 @@ public class ItemServiceImpl implements ItemService{
 		return euDateGridResult;
 	}
 	@Override
-	public TaotaoResult createItem(TbItem item) {
+	public TaotaoResult createItem(TbItem item,String desc) {
 		//item补全
 		item.setId(IDUtils.genItemId());
 		//商品状态 1正常,2下架 3删除
@@ -49,8 +53,22 @@ public class ItemServiceImpl implements ItemService{
 		item.setUpdated(new Date());
 		//插入到数据库
 		itemMapper.insert(item);
+		//添加商品描述到数据库
+		insertItemDesc(item.getId(),desc);
 		return TaotaoResult.ok();
 	}
-	
+	/**
+	 * 添加商品描述
+	 * @param desc
+	 */
+	private TaotaoResult insertItemDesc(Long itemId,String desc){
+		TbItemDesc itemDesc=new TbItemDesc();
+		itemDesc.setItemId(itemId);
+		itemDesc.setItemDesc(desc);
+		itemDesc.setCreated(new Date());
+		itemDesc.setUpdated(new Date());
+		itemDescMapper.insertSelective(itemDesc);
+		return TaotaoResult.ok();
+	}
 	
 }

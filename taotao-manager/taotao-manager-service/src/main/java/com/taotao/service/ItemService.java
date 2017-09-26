@@ -3,6 +3,7 @@ package com.taotao.service;
 import com.taotao.common.pojo.EUDateGridResult;
 import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.pojo.TbItem;
+import com.taotao.pojo.TbItemDesc;
 
 public interface ItemService {
 
@@ -13,8 +14,8 @@ public interface ItemService {
 	 * @param rows 每页显示数量
 	 */
 	EUDateGridResult getItemList(int page,int rows);
-	/*
+	/**
 	 * 保存商品
 	 */
-	TaotaoResult createItem(TbItem item);
+	TaotaoResult createItem(TbItem item,String desc);
 }

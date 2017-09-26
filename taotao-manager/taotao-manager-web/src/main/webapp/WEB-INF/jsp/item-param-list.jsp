@@ -25,7 +25,6 @@
 		});
 		return array.join(",");
 	}
-
     function getSelectionsIds(){
     	var itemList = $("#itemParamList");
     	var sels = itemList.datagrid("getSelections");
