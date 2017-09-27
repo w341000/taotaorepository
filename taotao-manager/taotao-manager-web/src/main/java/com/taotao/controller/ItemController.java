@@ -35,8 +35,8 @@ public class ItemController {
 	//保存商品信息
 		@RequestMapping(value="/item/save",method=RequestMethod.POST)
 		@ResponseBody
-		public TaotaoResult save(TbItem item,String desc){
-			TaotaoResult result = itemService.createItem(item,desc);
+		public TaotaoResult save(TbItem item,String desc,String itemParams){
+			TaotaoResult result = itemService.createItem(item,desc,itemParams);
 			return result;
 		}
 }
