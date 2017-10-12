@@ -10,5 +10,4 @@ public interface ContentService {
 	 * @return
 	 */
 	List<TbContent> getContentList(Long contentCid);
-
 }
