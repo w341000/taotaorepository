@@ -6,11 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.taotao</groupId>
-  <artifactId>taotao-rest</artifactId>
+  <artifactId>taotao-search</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <!-- 依赖管理 -->
   <dependencies>
+  <!-- 依赖管理 -->
   		<dependency>
   			<groupId>com.taotao</groupId>
   			<artifactId>taotao-manager-mapper</artifactId>
@@ -48,11 +48,6 @@
 				<artifactId>jsp-api</artifactId>
 				<scope>provided</scope>
 			</dependency>
-			<!-- Redis客户端 -->
-			<dependency>
-				<groupId>redis.clients</groupId>
-				<artifactId>jedis</artifactId>
-			</dependency>
 			<!-- solr客户端 -->
 			<dependency>
 				<groupId>org.apache.solr</groupId>
@@ -66,7 +61,7 @@
 					<groupId>org.apache.tomcat.maven</groupId>
 					<artifactId>tomcat7-maven-plugin</artifactId>
 					<configuration>
-		           		<port>8081</port>
+		           		<port>8083</port>
 			             <path>/</path>
 			              <uriEncoding>UTF-8</uriEncoding>
 			               <finalName>mgr</finalName>
