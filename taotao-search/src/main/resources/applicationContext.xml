@@ -48,4 +48,8 @@
 	</context:component-scan>
 	<!-- 事务注解 -->
 	<tx:annotation-driven />
+	<!-- solr客户端(单机版) -->
+	<bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+		<constructor-arg name="baseURL" value="${SOLR.SERVER.URL}" />
+	</bean>
 </beans>

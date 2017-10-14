@@ -14,7 +14,7 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd" >
 		<!-- 配置springmvc的子容器只扫描controller,和ControllerAdvice注解,注意 需要设置 use-default-filters为false-->
-		<context:component-scan base-package="com.taotao.rest.controller" use-default-filters="false">
+		<context:component-scan base-package="com.taotao.search.controller" use-default-filters="false">
 			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 			<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 		</context:component-scan>
