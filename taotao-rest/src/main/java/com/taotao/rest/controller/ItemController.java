@@ -19,8 +19,25 @@ public class ItemController {
 	
 	@RequestMapping("/info/{itemid}")
 	@ResponseBody
+	//获取商品信息
 	public TaotaoResult getItemInfo(@PathVariable Long itemid){
 		TaotaoResult taotaoResult = itemService.getItemBaseInfo(itemid);
+		return taotaoResult;
+	}
+	
+	@RequestMapping("/desc/{itemid}")
+	@ResponseBody
+	//获取商品描述信息
+	public TaotaoResult getItemDesc(@PathVariable Long itemid){
+		TaotaoResult taotaoResult = itemService.getItemDesc(itemid);
+		return taotaoResult;
+	}
+	
+	@RequestMapping("/param/{itemid}")
+	@ResponseBody
+	//获取商品规格信息
+	public TaotaoResult getItemParam(@PathVariable Long itemid){
+		TaotaoResult taotaoResult = itemService.getItemParam(itemid);
 		return taotaoResult;
 	}
 
