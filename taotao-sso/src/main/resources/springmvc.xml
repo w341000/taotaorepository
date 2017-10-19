@@ -27,4 +27,8 @@
 
 		<!-- 默认创建注解处理器映射器和注解处理器适配器,并提供json支持-->
 	 	<mvc:annotation-driven />
+	 	<!-- 配置资源映射 -->
+		<mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+		<mvc:resources location="/WEB-INF/images/" mapping="/images/**"/>
+		<mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
 </beans>

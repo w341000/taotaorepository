@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import com.taotao.common.pojo.TaotaoResult;
+import com.taotao.common.utils.CookieUtils;
 import com.taotao.common.utils.ExceptionUtil;
 import com.taotao.common.utils.JsonUtils;
 import com.taotao.mapper.TbUserMapper;
@@ -29,10 +32,12 @@ public class UserServiceImpl implements UserService {
 	private JedisClient jedisClient;
 	
 	@Value("${REDIS_USER_SESSION_KEY}")
-	private String REDIS_USER_SESSION_KEY;
+	private  String REDIS_USER_SESSION_KEY;
 	
 	@Value("${REDIS_SESSION_EXPIRE}")
 	private Integer REDIS_SESSION_EXPIRE;
+	
+
 
 	@Override
 	public TaotaoResult checkData(String content, Integer type) {
@@ -49,9 +54,9 @@ public class UserServiceImpl implements UserService {
 		List<TbUser> list = userMapper.selectByExample(example);
 		//返回数据，true：数据可用，false：数据不可用
 		if(list==null || list.size()==0){
-			return  TaotaoResult.ok("true");
+			return  TaotaoResult.ok(true);
 		}
-		return  TaotaoResult.ok("false");
+		return  TaotaoResult.ok(false);
 	}
 
 	@Override
@@ -64,7 +69,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public TaotaoResult userLogin(String username, String password) {
+	public TaotaoResult userLogin(String username, String password,
+			HttpServletRequest request, HttpServletResponse response){
 		TbUserExample example=new TbUserExample();
 		example.createCriteria().andUsernameEqualTo(username);
 		List<TbUser> list = userMapper.selectByExample(example);
@@ -85,6 +91,9 @@ public class UserServiceImpl implements UserService {
 		//把用户信息写入redis
 		jedisClient.set(REDIS_USER_SESSION_KEY+":"+token, JsonUtils.objectToJson(user));
 		jedisClient.expire(REDIS_USER_SESSION_KEY+":"+token, REDIS_SESSION_EXPIRE);//设置过期时间
+		
+		//添加cookie逻辑
+		CookieUtils.setCookie(request, response, "TT_TOKEN", token);
 		return TaotaoResult.ok(token);
 	}
 
@@ -101,5 +110,7 @@ public class UserServiceImpl implements UserService {
 		jedisClient.expire(REDIS_USER_SESSION_KEY+":"+token, REDIS_SESSION_EXPIRE);//设置过期时间
 		return TaotaoResult.ok(JsonUtils.jsonToPojo(json, TbUser.class));
 	}
+
+	
 
 }
