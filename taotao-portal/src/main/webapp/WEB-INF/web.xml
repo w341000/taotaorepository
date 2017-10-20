@@ -33,6 +33,7 @@ id="WebApp_ID" version="3.0">
   <servlet-mapping>
   	<servlet-name>springmvc</servlet-name>
   	<url-pattern>*.html</url-pattern>
+  	<url-pattern>*.action</url-pattern>
   </servlet-mapping>
     <!-- 加载spring容器配置文件-->
   <context-param>
