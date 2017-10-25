@@ -25,4 +25,6 @@ public interface UserService {
 	 */
 	TaotaoResult getUserBytoken(String token);
 
+	TaotaoResult userLogout(String token,HttpServletRequest request, HttpServletResponse response);
+
 }

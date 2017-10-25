@@ -30,7 +30,7 @@
 	 	<mvc:interceptors>
 	 		<mvc:interceptor>
 	 			<!--拦截订单请求 -->
-	 			<mvc:mapping path="/cart/acc/**"/>
+	 			<mvc:mapping path="/order/**"/>
 	 			<bean class="com.taotao.portal.interceptor.LoginInterceptor"></bean>
 	 		</mvc:interceptor>
 	 	</mvc:interceptors>

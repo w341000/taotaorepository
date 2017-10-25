@@ -1,5 +1,6 @@
 package com.taotao.portal.service.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +20,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public TbUser getUserByToken(String token) {
 		try {
-			String json = HttpClientUtil.doGet(SSO_BASE_URL+SSO_USER_TOKEN+token);
-			//把json转换taotaoresult
-			TaotaoResult taotaoResult = TaotaoResult.formatToPojo(json, TbUser.class);
-			if(taotaoResult.getStatus()==200){
-				TbUser user = (TbUser) taotaoResult.getData();
-				return user;
+			if(StringUtils.isNotBlank(token)){
+				String json = HttpClientUtil.doGet(SSO_BASE_URL+SSO_USER_TOKEN+token);
+				//把json转换taotaoresult
+				TaotaoResult taotaoResult = TaotaoResult.formatToPojo(json, TbUser.class);
+				if(taotaoResult!=null&&taotaoResult.getStatus()==200){
+					TbUser user = (TbUser) taotaoResult.getData();
+					return user;
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

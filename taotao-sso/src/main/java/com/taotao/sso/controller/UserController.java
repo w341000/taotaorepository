@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -105,17 +106,11 @@ public class UserController {
 		}
 	}
 	
-	/*
+	
 	//用户登出
-		@RequestMapping(value="/logout/{token}",method=RequestMethod.POST)
-		@ResponseBody
-		public TaotaoResult login(@PathVariable String token,String callback){
-			try {
-				TaotaoResult result = userService.userLogout(token);
-				return result;
-			} catch (Exception e) {
-				return TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
-			}
+		@RequestMapping(value="/logout")
+		public String logout(@CookieValue(required=true,value="TT_TOKEN") String token,HttpServletRequest request, HttpServletResponse response){
+				userService.userLogout(token, request, response);
+				return "redirect:http://localhost:8082/index.html";
 		}
-		*/
 }
