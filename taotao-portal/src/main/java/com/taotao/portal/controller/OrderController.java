@@ -15,12 +15,15 @@ import com.taotao.portal.pojo.CartItem;
 import com.taotao.portal.pojo.Order;
 import com.taotao.portal.service.CartService;
 import com.taotao.portal.service.OrderService;
+import com.taotao.portal.service.UserService;
 
 @Controller
 @RequestMapping("/order")
 public class OrderController {
 	@Resource
 	private CartService cartService;
+	@Resource
+	private UserService userService;
 	@Resource
 	private OrderService orderService;
 	@RequestMapping("/order-cart")
@@ -31,9 +34,10 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/create")
-	public String createOrder(Order order,Model model){
+	public String createOrder(Order order,Model model,HttpServletRequest request){
 		try {
-			String orderId = orderService.createOrder(order);
+			
+			String orderId = orderService.createOrder(order,request);//创建订单
 			model.addAttribute("orderId", orderId);
 			model.addAttribute("payment", order.getPayment());
 			model.addAttribute("orderId", new DateTime().plusDays(3).toString("yyyy-MM-dd"));

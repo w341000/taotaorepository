@@ -1,13 +1,14 @@
 package com.taotao.portal.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.taotao.portal.pojo.Order;
 
 public interface OrderService {
 	/**
 	 * 
-	 * @param order
 	 * @return orderID 
 	 */
-	String createOrder(Order order); 
+	String createOrder(Order order,HttpServletRequest request); 
 
 }
