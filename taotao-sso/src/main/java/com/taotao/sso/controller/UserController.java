@@ -111,6 +111,6 @@ public class UserController {
 		@RequestMapping(value="/logout")
 		public String logout(@CookieValue(required=true,value="TT_TOKEN") String token,HttpServletRequest request, HttpServletResponse response){
 				userService.userLogout(token, request, response);
-				return "redirect:http://localhost:8082/index.html";
+				return "redirect:http://www.taotao.com/index.html";
 		}
 }
