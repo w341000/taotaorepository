@@ -1,5 +1,7 @@
 package com.taotao.portal.interceptor;
 
+import java.net.URLEncoder;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +23,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 		TbUser user = userService.getUserByToken(token);
 		if(user==null){
 			//让浏览器跳转
-			response.sendRedirect(userService.SSO_BASE_URL+userService.SSO_PAGE_LOGIN+"?redirect="+request.getRequestURL());
+			String redirect=URLEncoder.encode(request.getRequestURL().toString(), "utf-8");
+			response.sendRedirect(userService.SSO_BASE_URL+userService.SSO_PAGE_LOGIN+"?redirect="+redirect);
 			return false;
 		}
 		request.setAttribute("user", user);//用户信息放入request

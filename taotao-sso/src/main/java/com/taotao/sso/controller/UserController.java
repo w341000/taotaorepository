@@ -1,5 +1,8 @@
 package com.taotao.sso.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -35,10 +38,11 @@ public class UserController {
 	}
 	/**
 	 * 展示登录页面
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping("/showLogin")
-	public String showLogin(String redirect,Model model){
-		model.addAttribute("redirect", redirect);
+	public String showLogin(String redirect,Model model) throws UnsupportedEncodingException{
+		model.addAttribute("redirect", URLDecoder.decode(redirect, "UTF-8"));
 		return "login";
 	}
 	
