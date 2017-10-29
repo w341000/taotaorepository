@@ -42,7 +42,10 @@ public class UserController {
 	 */
 	@RequestMapping("/showLogin")
 	public String showLogin(String redirect,Model model) throws UnsupportedEncodingException{
-		model.addAttribute("redirect", URLDecoder.decode(redirect, "UTF-8"));
+		if(StringUtils.isNotBlank(redirect)){
+			redirect=URLDecoder.decode(redirect, "UTF-8");
+		}
+		model.addAttribute("redirect", redirect);
 		return "login";
 	}
 	
