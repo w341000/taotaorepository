@@ -30,7 +30,7 @@ Jdk版本:JDK 1.7
 数据库:Mysql 5.7   
 图片服务器及反向代理服务器:Nginx 1.8.0  
 缓存:Redis 4.0.0  
-操作系统:Win7 操作系统(开发) Linux(centos6.9 部署)
+操作系统:Win7 操作系统(开发) Linux(centos6.9 部署)  
 版本管理:GIT(视频中使用svn)
 
 ## 项目结构
